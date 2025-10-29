@@ -1,7 +1,3 @@
 {
-  "functions": {
-    "middleware.js": {
-      "runtime": "edge"
-    }
-  }
+  "trailingSlash": false
 }

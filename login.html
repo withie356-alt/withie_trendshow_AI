@@ -128,31 +128,26 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        // 이미 인증된 경우 메인 페이지로 리다이렉트
+        if (sessionStorage.getItem('authenticated') === 'true') {
+            window.location.href = '/';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
 
-            try {
-                const response = await fetch(window.location.href, {
-                    method: 'GET',
-                    headers: {
-                        'x-password': password
-                    }
-                });
-
-                if (response.ok) {
-                    // 인증 성공 - 메인 페이지로 이동
-                    window.location.href = '/';
-                } else {
-                    // 인증 실패
-                    errorMessage.classList.add('show');
-                    document.getElementById('password').value = '';
-                    document.getElementById('password').focus();
-                }
-            } catch (error) {
+            if (password === '356356') {
+                // 인증 성공
+                sessionStorage.setItem('authenticated', 'true');
+                window.location.href = '/';
+            } else {
+                // 인증 실패
                 errorMessage.classList.add('show');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
             }
         });
 
