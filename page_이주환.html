@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 에이전트는 어떻게 비즈니스를 바꾸는가 - 이주환</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+            color: #333;
+            padding: 40px 40px 30px;
+        }
+
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .speaker-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        .topic {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .content {
+            padding: 50px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #5eaaa8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #5eaaa8;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #555;
+            margin: 30px 0 15px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, #5eaaa820 60%);
+            font-weight: 600;
+            padding: 2px 0;
+        }
+
+        .key-point {
+            background-color: #f0f9ff;
+            border-left: 4px solid #5eaaa8;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            padding: 20px 30px;
+            border-left: 4px solid #5eaaa8;
+            margin: 25px 0;
+            background-color: #fafafa;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .three-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .pillar {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pillar-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .pillar-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: white;
+            padding: 15px;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .old-way {
+            background-color: #ffebee;
+        }
+
+        .new-way {
+            background-color: #e8f5e9;
+        }
+
+        .price-shock {
+            text-align: center;
+            padding: 25px;
+            margin: 25px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .price-shock .old-price {
+            font-size: 24px;
+            color: #d32f2f;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+
+        .price-shock .arrow {
+            font-size: 32px;
+            color: #5eaaa8;
+            margin: 10px 0;
+        }
+
+        .price-shock .new-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2e7d32;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .case-study {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .case-title {
+            font-weight: 700;
+            color: #5eaaa8;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .emphasis-box {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .emphasis-box .big-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #5eaaa8;
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            padding: 20px 0 20px 40px;
+            border-left: 3px solid #5eaaa8;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #5eaaa8;
+        }
+
+        .timeline-item strong {
+            color: #5eaaa8;
+            font-size: 1.1em;
+        }
+
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 700;
+            color: #5eaaa8;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .arrow {
+            color: #5eaaa8;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .warning-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .scenario-card {
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+
+        .scenario-card.positive {
+            background: #f5f5f5;
+            border-color: #96e6a1;
+        }
+
+        .scenario-card.negative {
+            background: #f5f5f5;
+            border-color: #ff9a9e;
+        }
+
+        .scenario-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .trend-list, .insight, .age-comparison, .clock-analogy,
+        .infrastructure-box, .prediction-box, .stats-box {
+            background-color: #f0f9ff;
+            border-left: 4px solid #5eaaa8;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .trend-list h4, .insight h3, .infrastructure-box h4,
+        .prediction-box h4, .stats-box h4 {
+            color: #5eaaa8;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .success-story {
+            background-color: #f0f9ff;
+            border-left: 4px solid #5eaaa8;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .success-story h4 {
+            color: #5eaaa8;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .emphasis {
+            font-size: 18px;
+            font-weight: 700;
+            color: #5eaaa8;
+            text-align: center;
+            padding: 20px;
+            margin: 25px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 30px 60px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="speaker-info">
+                <div>
+                    <div class="speaker-name">이주환</div>
+                    <div class="speaker-title">스윗 대표</div>
+                </div>
+            </div>
+            <div class="topic">AI 에이전트는 어떻게 비즈니스를 바꾸는가</div>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>LLM은 엔진일 뿐, 비즈니스에는 완전한 차량이 필요하다</h2>
+                <p>
+                    많은 사람들이 LLM(Large Language Model)을 AI의 전부라고 생각한다. ChatGPT를 쓰면 모든 문제가 해결될 것처럼 여긴다. 하지만 이것은 마치 자동차 엔진만 있으면 운전할 수 있다고 생각하는 것과 같다. <span class="highlight">LLM은 강력한 엔진이지만, 그 자체로는 불완전하다</span>.
+                </p>
+                <p>
+                    실제 비즈니스 문제를 해결하기 위해서는 엔진 외에도 핸들(방향 제어), 브레이크(안전장치), 연료 시스템(데이터 공급), 그리고 운전자 인터페이스(사용자 경험)가 필요하다. 이 모든 것이 유기적으로 결합될 때 비로소 실용적인 비즈니스 솔루션이 탄생한다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>사용자 기대가치의 진화: Answer → Task → Tool Call</h2>
+                <p>
+                    AI에 대한 사용자의 기대는 빠르게 진화하고 있다. 처음에는 단순히 "질문에 답을 주는 것"으로 만족했다. ChatGPT 초기 버전이 그랬다. 하지만 곧 사람들은 <span class="highlight">답변을 넘어 실제 업무를 수행</span>해주기를 원하게 되었다.
+                </p>
+
+                <div class="evolution-timeline">
+                    <div class="evolution-step">
+                        <span>Answer</span>
+                        <span class="evolution-arrow">→</span>
+                        <span>Task</span>
+                        <span class="evolution-arrow">→</span>
+                        <span>Tool Call</span>
+                    </div>
+                    <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
+                        질문에 답하기 → 업무 수행하기 → 도구를 호출하여 실행하기
+                    </p>
+                </div>
+
+                <p>
+                    Tool Call 단계에 이르면 AI는 단순히 답변을 생성하는 것을 넘어, 구체적인 도구를 호출하고 태스크를 완수한다. 예를 들어 "다음 주 회의 일정 잡아줘"라고 하면, AI가 캘린더를 확인하고, 참석자의 스케줄을 대조하고, 회의실을 예약하고, 초대장을 발송한다. 사람의 의도(Intent)를 실제 업무 결과물로 전환하는 것이다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>LAMT 프레임워크: 신뢰할 수 있는 에이전트의 4가지 요소</h2>
+                <p>
+                    효과적인 AI 에이전트를 구축하려면 네 가지 핵심 요소가 필요하다. 이를 LAMT 프레임워크라고 부른다.
+                </p>
+
+                <div class="lamt-framework">
+                    <div class="lamt-item">
+                        <div class="lamt-letter">L</div>
+                        <div class="lamt-title">LLM (Language Model)</div>
+                        <div class="lamt-desc">핵심 추론 엔진. 자연어를 이해하고 생성하는 기본 능력을 제공한다.</div>
+                    </div>
+                    <div class="lamt-item">
+                        <div class="lamt-letter">A</div>
+                        <div class="lamt-title">Autonomy (자율성)</div>
+                        <div class="lamt-desc">일관되고 예측 가능한 의사결정 능력. 사람의 개입 없이도 신뢰할 수 있는 판단을 내린다.</div>
+                    </div>
+                    <div class="lamt-item">
+                        <div class="lamt-letter">M</div>
+                        <div class="lamt-title">Memory (기억)</div>
+                        <div class="lamt-desc">컨텍스트를 유지하고 과거 경험에서 학습하는 능력. 대화의 맥락을 기억한다.</div>
+                    </div>
+                    <div class="lamt-item">
+                        <div class="lamt-letter">T</div>
+                        <div class="lamt-title">Tool (도구)</div>
+                        <div class="lamt-desc">외부 시스템과 상호작용하는 능력. API, 데이터베이스, 서비스를 호출한다.</div>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <p style="font-weight: 700; margin-bottom: 10px;">자율성(Autonomy)이 핵심이다</p>
+                    <p>
+                        많은 사람들이 LLM 성능만 높이면 된다고 생각한다. 하지만 진정한 차별화 요소는 <span class="highlight">자율성</span>이다. 사람이 매번 확인하고 수정해야 하는 AI는 비즈니스에서 쓸모없다. 스스로 판단하고 일관되게 실행하는 능력이 있어야 실제 업무에 투입할 수 있다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>멀티 에이전트 시스템: 협업하는 AI들</h2>
+                <p>
+                    하나의 에이전트로는 복잡한 비즈니스 문제를 해결할 수 없다. 마치 회사에 다양한 부서가 있듯이, 에이전트도 여러 개가 협업해야 한다. 어떤 에이전트는 데이터 분석을 전담하고, 어떤 에이전트는 고객 응대를 맡으며, 또 다른 에이전트는 의사결정을 내린다.
+                </p>
+                <p>
+                    멀티 에이전트 시스템에서 중요한 것은 <span class="highlight">계층적(Hierarchical) 구조</span>다. 상위 에이전트가 전략적 의사결정을 내리면, 하위 에이전트들이 구체적인 실행 태스크를 분담한다. 마치 CEO가 방향을 정하고 각 부서장이 실행하는 것과 같다.
+                </p>
+
+                <div class="quote">
+                    "항공 예약 에이전트를 생각해보자. 가장 중요한 것은 무엇일까? 항공편 가격도, 할인 쿠폰도 아니다. 바로 캘린더다. 사용자의 일정을 모르면 아무리 좋은 항공편을 찾아도 소용없다. Planning 에이전트는 반드시 캘린더를 우선 참조해야 한다."
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Apps Out, Agents In: 패러다임의 전환</h2>
+                <div class="slogan">
+                    Apps Out, Agents In
+                </div>
+                <p>
+                    Swit의 전략은 명확하다. 기존의 앱 중심 워크플로우에서 벗어나, <span class="highlight">AI 에이전트가 자율적으로 의사결정하고 실행하는 새로운 업무 패러다임</span>으로 전환하는 것이다. 이것은 단순한 자동화가 아니다. 진정한 디지털 트랜스포메이션이다.
+                </p>
+                <p>
+                    과거에는 사람이 여러 앱을 오가며 일했다. 이메일 확인하고, CRM 업데이트하고, 스프레드시트 작성하고, 보고서 만들고... 하지만 에이전트 시대에는? <span class="highlight">에이전트가 24시간 7일 내내 작동</span>하면서 마케팅 ROAS를 실시간 모니터링하고, KPI 달성 여부에 따라 즉각 광고 지출을 조정하며, 시장 변화를 감지하는 순간 의사결정을 내린다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>에이전트 생태계의 프로토콜들</h2>
+                <p>
+                    AI 에이전트들이 서로 통신하고 협업하려면 표준화된 프로토콜이 필요하다. 마치 인터넷이 HTTP 프로토콜로 작동하듯이, 에이전트 인터넷도 자체 프로토콜이 있다.
+                </p>
+
+                <div class="protocol-grid">
+                    <div class="protocol-item">
+                        <div class="protocol-name">MCP</div>
+                        <div class="protocol-desc">Model Context Protocol - LLM과 일관된 컨텍스트 유지</div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-name">A2A</div>
+                        <div class="protocol-desc">Agent-to-Agent - 에이전트 간 통신</div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-name">LMOS</div>
+                        <div class="protocol-desc">Large Model OS - AI 모델 운영체제</div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-name">ANP</div>
+                        <div class="protocol-desc">Agent Negotiation - 에이전트 협상 프로토콜</div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-name">Agora</div>
+                        <div class="protocol-desc">에이전트 마켓플레이스 - 서비스 발견 및 거래</div>
+                    </div>
+                    <div class="protocol-item">
+                        <div class="protocol-name">ACP</div>
+                        <div class="protocol-desc">Agent Communication - 표준 메시지 교환</div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px;">
+                    이러한 프로토콜들이 결합되면, 에이전트들은 서로를 발견하고, 협상하고, 업무를 분담하며, 결과를 공유할 수 있다. <span class="highlight">에이전트 경제의 핵심 인프라</span>가 만들어지는 것이다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>비즈니스 임팩트: 숫자로 증명되는 혁신</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">개발 시간 단축</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">60%+</div>
+                        <div class="stat-label">업무 자동화율</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$0</div>
+                        <div class="stat-label">인프라 구축 비용</div>
+                    </div>
+                </div>
+
+                <p>
+                    Swit의 슈퍼 워크 엔진은 AI 스택, 프레임워크, 모델, 도구를 통합한 Enterprise PaaS(Platform as a Service)다. 기업들은 복잡한 AI 인프라를 직접 구축할 필요 없이, 즉시 에이전트 기반 업무 자동화를 도입할 수 있다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>성공 사례: 러버블(Lovable)의 신화</h2>
+                <div class="case-box">
+                    <h3>직원 40명, 8개월 만에 1억 달러 매출</h3>
+                    <p>
+                        러버블(Lovable)이라는 회사는 직원이 40명밖에 안 된다. 하지만 놀랍게도 <span class="highlight">8개월 만에 연 반복 매출(ARR) 1억 달러</span>를 달성했다. 어떻게 가능했을까?
+                    </p>
+                    <p style="margin-top: 15px;">
+                        답은 간단하다. 에이전트 기반 비즈니스 모델을 채택했기 때문이다. Slack 이후 100밀리언 달러를 가장 빠르게 달성한 모든 회사들의 공통점은 하나다. <span class="highlight">모두 에이전트를 활용</span>한다는 것이다.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        Slack 이전 시대의 기업들은 디지털 도구를 썼다. Slack 이후 시대의 기업들은? 모두 에이전트를 쓴다. 월마트를 비롯한 글로벌 탑 기업들이 Swit의 에이전틱 커머스 솔루션을 채택하면서, 모든 AI 채널을 마케팅과 세일즈에 활용하고 있다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>기존 비즈니스는 대체될 것이다</h2>
+                <div class="quote">
+                    "여러분이 가장 좋아하는 도구를 생각해보라. 그 도구의 기능 중 10개 이상 쓰는 사람이 있는가? 없다. B2B로 가보자. SAP, Salesforce, Microsoft... 이들의 API가 2만 개가 넘는다. 그중 2,000개를 쓰는 사람이 있는가? 평생 사용해도 없을 것이다."
+                </div>
+                <p>
+                    이것이 의미하는 바는 무엇인가? <span class="highlight">더 이상 이런 식으로 비즈니스가 안 된다</span>는 것이다. 수만 개의 기능을 가진 복잡한 소프트웨어 대신, 사용자의 의도를 이해하고 자동으로 실행하는 에이전트가 필요하다.
+                </p>
+                <p>
+                    HubSpot의 CEO는 이렇게 말했다. "기존 비즈니스는 대체될 것이다. 누구에게? 에이전트에게." 미국의 가장 보수적인 뉴욕 금융과 리테일 회사들이 이미 에이전트 전환을 시작했다. 이 기회를 놓치지 말아야 한다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>슈퍼 워크로 함께하는 에이전트 비즈니스</h2>
+                <p>
+                    Swit은 단순히 협업 도구를 제공하는 회사가 아니다. <span class="highlight">에이전트 중심의 비즈니스 생태계를 구축하는 플랫폼</span>이다. MCP 서버를 통해 다양한 LLM 클라이언트들과 연결되고, 각 도구가 독립적인 에이전트로 작동하는 구조다.
+                </p>
+                <p>
+                    특히 주목할 점은 단일 LLM 제공자에 종속되지 않는다는 것이다. OpenAI든, Anthropic이든, Google이든 어떤 LLM을 사용하든 상관없이 에이전트 생태계에 통합될 수 있다. 이것이 진정한 에이전트 경제의 모습이다.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>AI 거버넌스 컨퍼런스 2026 | Session 3: 코리아넘버</p>
+        </footer>
+    </div>
+</body>
+</html>

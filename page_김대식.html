@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 시대 살아남을 인간의 인간성 - 김대식</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+            color: #333;
+            padding: 40px 40px 30px;
+        }
+
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .speaker-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        .topic {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .content {
+            padding: 50px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #f5576c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #f5576c;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #555;
+            margin: 30px 0 15px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, #f5576c20 60%);
+            font-weight: 600;
+            padding: 2px 0;
+        }
+
+        .key-point {
+            background-color: #f0f9ff;
+            border-left: 4px solid #f5576c;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            padding: 20px 30px;
+            border-left: 4px solid #f5576c;
+            margin: 25px 0;
+            background-color: #fafafa;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .three-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .pillar {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .pillar-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .pillar-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 30px 0;
+            padding: 25px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .timeline-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f5576c;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .arrow {
+            color: #f5576c;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .warning-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .emphasis {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f5576c;
+            text-align: center;
+            padding: 20px;
+            margin: 25px 0;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 30px 60px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="speaker-info">
+                <div>
+                    <div class="speaker-name">김대식</div>
+                    <div class="speaker-title">KAIST 교수</div>
+                </div>
+            </div>
+            <div class="topic">AI 시대 살아남을 인간의 인간성</div>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>AI에서 AGI로: 10년에서 20년 후의 세계</h2>
+                <p>
+                    AI(Artificial Intelligence)와 AGI(Artificial General Intelligence)는 근본적으로 다르다. AI는 특정한 한 가지 능력에서 인간을 능가할 수 있다. 바둑을 두는 알파고, 대화를 나누는 ChatGPT가 그 예다. 하지만 AGI는 차원이 다르다. <span class="highlight">인간의 모든 지적 능력을 잠재적으로 대체할 수 있는 범용 인공지능</span>을 의미한다.
+                </p>
+                <p>
+                    불과 2-3년 전만 해도 대부분의 전문가들은 AGI를 먼 미래의 이야기로 치부했다. 하지만 ChatGPT의 등장 이후 분위기가 급격히 바뀌었다. 알고리즘의 혁신과 스케일 법칙의 발견으로 기계의 성능은 기하급수적으로 향상되고 있다. 이제 전문가들 사이에서 AGI가 "불가능하다"고 말하는 사람은 없다. 논의는 단지 <span class="highlight">5년 안에 가능할지, 10년일지, 20년일지</span>로 좁혀졌다.
+                </p>
+                <p>
+                    현재 가장 우수한 AI는 인간이 4-5시간 정도 걸려 풀 수 있는 문제를 해결하는 수준에 도달했다. AGI란 한 사람이 평생 노동시간, 즉 30-40년 동안 할 수 있는 일을 대체하는 기계로 정의할 수 있다. 10년이나 20년이 길어 보일 수 있지만, 성인으로 살아가며 우리가 배우는 가장 큰 교훈 중 하나는 "10년, 20년도 금방 지나간다"는 것이다. AGI는 더 이상 공상과학이 아니다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>일자리 지형의 변화: 신입은 사라지고 경력직은 살아남다</h2>
+                <p>
+                    AI의 영향은 이미 노동시장에서 명확하게 나타나고 있다. 스탠포드 대학의 최근 연구에 따르면, ChatGPT가 등장한 2022년 말을 기점으로 고용 패턴에 극적인 변화가 관찰되었다. 그 이전까지는 경기에 따라 모든 연령대의 채용이 동일하게 움직였다. 하지만 ChatGPT 이후, <span class="highlight">22-25세 신입 채용은 급감</span>한 반면, <span class="highlight">41-49세 경력직 채용은 오히려 증가</span>했다.
+                </p>
+                <p>
+                    이것이 의미하는 바는 명확하다. 대학을 갓 졸업하고 경력이 없는 인력이 할 수 있는 수준의 업무는 이제 AI가 대체할 수 있다는 것이다. 반면 수십 년의 경험과 판단력, 복잡한 상황에서의 의사결정 능력이 요구되는 중간 관리자급 인력은 여전히 필요하다. 특히 소프트웨어 개발과 고객 서비스 분야에서 이러한 변화가 두드러진다.
+                </p>
+
+                <div class="quote">
+                    "AI 시대의 진정한 경쟁은 인간 대 기계가 아니다. AI를 잘 활용하는 인간과 그렇지 못한 인간 사이의 경쟁이다."
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>합성 미디어와 가짜 역사의 시대</h2>
+                <p>
+                    2025년 8월, Google의 Gemini 2.5(일명 나노바나나)는 콘텐츠 산업에 혁명을 일으켰다. 이전까지 AI는 "귀여운 고양이"를 그릴 수는 있었지만, "리본을 단 고양이"를 지시하면 매번 다른 고양이를 그렸다. 일관성이 없었던 것이다. 하지만 나노바나나는 일관된 캐릭터를 유지하면서 세부 사항을 변경할 수 있게 되었다. 이것이 <span class="highlight">"나노바나나 모멘트"</span>다.
+                </p>
+                <p>
+                    더 충격적인 것은 2025년 10월 1일 공개된 OpenAI의 Sora 2다. 이 기술은 현실과 구분하기 어려운 수준의 영상을 생성할 수 있다. 할리우드는 패닉 상태에 빠졌다. 수천억 원을 들여 몇 년간 제작한 영화가 이제 수십억 원으로, 몇 개월 만에 만들어질 수 있게 되었기 때문이다. 더 큰 문제는 주연 배우의 스캔들로 모든 투자가 물거품이 될 위험도 사라졌다는 점이다.
+                </p>
+                <p>
+                    하지만 이 기술이 가져올 가장 심각한 문제는 따로 있다. <span class="highlight">역사적 사건을 조작하거나 존재하지 않았던 장면을 실제처럼 만들 수 있다</span>는 것이다. 영국 Channel 4는 2025년 10월 20일, AI의 사회적 영향을 다루는 프로그램을 방송했다. 프로그램이 끝날 무렵, 진행자가 자신이 AI 아나운서임을 밝혔다. 시청자 중 누구도 눈치채지 못했다.
+                </p>
+
+                <div class="warning-box">
+                    <div class="warning-title">2026년 선거를 위협하는 합성 미디어</div>
+                    <p>선거 하루 전, 특정 후보가 나라를 팔아먹거나 마약을 하는 영상이 유포된다고 상상해보라. 후보는 아니라고 부인하지만, 영상은 너무나 정교하다. 한 달 후 가짜로 판명되지만, 이미 선거는 끝났다. 이것이 합성 미디어 시대의 현실이다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>인터넷의 대전환: 검색에서 대화로</h2>
+                <p>
+                    2025년 10월 6일은 인터넷 역사에서 중요한 날로 기록될 것이다. OpenAI는 이날 ChatGPT 내에서 앱을 사용하고 결제까지 할 수 있는 기능을 발표했다. 이것은 단순한 기능 추가가 아니다. <span class="highlight">30년간 지속된 검색형 인터넷에서 대화형 인터넷으로의 전환</span>을 의미한다.
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1969</div>
+                        <div class="timeline-desc">TCP/IP</div>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1991</div>
+                        <div class="timeline-desc">WWW & 브라우저</div>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1998</div>
+                        <div class="timeline-desc">Google 검색</div>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-desc">ChatGPT</div>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-desc">대화형 인터넷</div>
+                    </div>
+                </div>
+
+                <p>
+                    1990년대 초, 월드와이드웹과 브라우저가 등장하면서 인터넷은 전문가만 쓰던 도구에서 누구나 사용할 수 있는 플랫폼이 되었다. 1998년 Google이 검색 엔진을 내놓으면서 우리는 "검색"이라는 방식으로 정보를 찾는 데 익숙해졌다. 하지만 이제 그 패러다임이 바뀌고 있다. 우리는 더 이상 검색하지 않는다. <span class="highlight">대화한다</span>.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>새로운 자본주의: 노동의 가치는 떨어지고 자본의 가치는 오른다</h2>
+                <p>
+                    AGI가 등장한다는 것은 인간의 지능을 자동화한다는 의미다. 경제학 개론에서 배우는 Cobb-Douglas 생산함수를 떠올려보자. 생산량은 노동 투입량과 자본 투입량의 곱으로 결정된다. 그런데 지적 노동이 자동화되면 어떻게 될까? 대량 생산이 가능해지므로 단가가 떨어진다. 즉, <span class="highlight">생산함수에서 노동의 가치는 하락하고 자본의 가치는 상승</span>한다.
+                </p>
+                <p>
+                    OpenAI의 CEO 샘 알트만은 이렇게 주장한다. "AGI를 가장 먼저 달성하는 기업이나 국가는 글로벌 시장지배력을 가진다. 미국이 AGI를 먼저 달성해야 하며, 중국이 미국보다 먼저 달성하는 것은 폭탄을 떨어뜨려서라도 막아야 한다." 과장처럼 들리지만, AGI의 경제적 파급력을 생각하면 결코 농담이 아니다.
+                </p>
+
+                <div class="key-point">
+                    <p style="font-size: 18px; font-weight: 600; color: #f5576c; margin-bottom: 15px;">
+                        앞으로 10-20년, 골든 타임
+                    </p>
+                    <p>
+                        AGI 시대에 노동의 가치는 계속 떨어질 것이다. 그렇다면 우리에게 주어진 10-20년 동안 무엇을 해야 할까? 답은 명확하다. <span class="highlight">미치도록 돈을 벌어야 한다</span>. 자본을 축적해야 한다. 노동의 가치는 떨어지지만 자본의 가치는 계속 올라갈 것이기 때문이다.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        자본을 축적할 수 없는 사람들은 어떻게 해야 할까? UBI(보편적 기본소득)나 UBC(보편적 기본 컴퓨팅 자원)와 같은 새로운 사회적 안전망이 필요할 것이다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>하이퍼 CEO의 시대</h2>
+                <p>
+                    역사를 돌아보면, 한 사회에서 가장 뛰어난 인재가 영향을 미칠 수 있는 범위가 계속 확장되어 왔다. 수렵채집 시대에는 한 가족을 먹여 살렸고, 농경 시대에는 한 마을을, 산업혁명 시대에는 한 도시를 먹여 살렸다. 앤드루 카네기의 능력으로 피츠버그가 번영했고, 헨리 포드의 능력으로 디트로이트가 성장했으며, 정주영의 능력으로 울산이 발전했다.
+                </p>
+                <p>
+                    AGI 시대에는 어떻게 될까? 실리콘밸리에서는 <span class="highlight">"하이퍼 CEO"</span>라는 개념이 논의되고 있다. 한 사람의 능력으로 한 국가 전체를 먹여 살릴 수 있는 시나리오다. 이것이 유토피아일까? 아니면 극심한 불평등을 초래할 디스토피아일까?
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>미국의 자해: 인재 자석의 힘을 스스로 파괴하다</h2>
+                <p>
+                    미국이 AI에서 글로벌 리더십을 유지할 수 있었던 가장 큰 이유는 전 세계의 인재를 끌어들이는 자석과 같은 힘이었다. 미국 공대 학생 100명 중 50명은 중국 출신이고, 나머지 절반은 인도, 유럽 등에서 온 학생들이다. 전통적인 미국 백인 학생은 한두 명에 불과하다.
+                </p>
+                <p>
+                    2025년 미국 수학 올림피아드 팀이 중국을 처음으로 이겼을 때, 팀 사진을 보면 충격적이다. 팀원 대부분이 중국계나 인도계 미국인이다. 생물학 올림피아드도 마찬가지다. <span class="highlight">미국의 경쟁력은 이민자들에게 80-90% 의존</span>한다.
+                </p>
+                <p>
+                    그런데 최근 미국은 반이민 정책을 강화하고 있다. 이것은 역사적으로 가장 어리석은 선택으로 기록될 것이다. 왼손으로 자신의 오른손을 자르고 있는 격이다. AI 개발 경쟁에서 미국의 리더십이 약화될 가능성이 커지고 있다.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>살아남기 위한 선택</h2>
+                <div class="emphasis">
+                    "회사가 AI 때문에 어려워지는 것이 아니다.<br>
+                    AI를 더 잘 활용하는 경쟁사 때문에 어려워질 것이다."
+                </div>
+                <p>
+                    AGI는 먼 미래의 이야기가 아니다. 우리 생애에 경험하게 될 현실이다. 그 세계에서 살아남기 위해서는 명확한 전략이 필요하다. AI가 잘하는 일은 AI에게 맡기고, 인간만이 할 수 있는 일에 집중해야 한다. 그리고 무엇보다 중요한 것은, <span class="highlight">지금이 자본을 축적할 마지막 골든 타임</span>이라는 것을 인식하는 것이다.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>AI 거버넌스 컨퍼런스 2026 | Session 1: AI와의 경쟁</p>
+        </footer>
+    </div>
+</body>
+</html>

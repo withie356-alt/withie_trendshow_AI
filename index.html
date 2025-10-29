@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>트렌드쇼2026 : AI와의 경쟁</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header {
+            background: transparent;
+            color: #333;
+            padding: 30px 20px 20px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-header h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: inline;
+            color: #333;
+        }
+
+        .notice {
+            font-size: 0.9em;
+            font-weight: 400;
+            display: inline;
+            color: #666;
+            margin-left: 20px;
+        }
+
+        .notice::before {
+            content: '|';
+            margin-right: 20px;
+            color: #ddd;
+        }
+
+        .tab-container {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 100;
+            flex-shrink: 0;
+        }
+
+        .tab-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .tab::after {
+            content: '|';
+            position: absolute;
+            right: -4px;
+            color: #ddd;
+        }
+
+        .tab:last-child::after {
+            content: '';
+        }
+
+        .tab:hover {
+            background: #e8f4f8;
+            color: #2c7a9e;
+        }
+
+        .tab.active {
+            background: #3498db;
+            color: white;
+            font-weight: 700;
+        }
+
+        .tab-speaker {
+            display: inline;
+        }
+
+        .tab-title {
+            display: none;
+        }
+
+        .content-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+
+        .content-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .content-box {
+            padding: 50px 60px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .content-box h2 {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content-box h3 {
+            font-size: 20px;
+            color: #764ba2;
+            margin: 30px 0 15px;
+        }
+
+        .content-box p {
+            margin-bottom: 16px;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background: linear-gradient(transparent 60%, #ffd70020 60%);
+            font-weight: 600;
+            padding: 2px 0;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            padding: 20px 30px;
+            border-left: 4px solid #764ba2;
+            margin: 25px 0;
+            background-color: #fafafa;
+        }
+
+        .key-point {
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-point strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .success-story, .insight, .age-comparison, .clock-analogy,
+        .infrastructure-box, .prediction-box, .trend-list, .stats-box {
+            background-color: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .success-story h4, .insight h3, .infrastructure-box h4,
+        .prediction-box h4, .trend-list h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            padding: 20px 0 20px 40px;
+            border-left: 3px solid #667eea;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #764ba2;
+        }
+
+        .timeline-item strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .three-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .pillar {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .pillar-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .pillar-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .pillar-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .speaker-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .question-box {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .question-box strong {
+            color: #1565c0;
+            font-size: 1.15em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 1.5em;
+            }
+
+            .tab {
+                padding: 15px 20px;
+                font-size: 14px;
+            }
+
+            .content-box {
+                padding: 30px 25px;
+            }
+
+            .content-box h2 {
+                font-size: 1.5em;
+            }
+
+            .three-pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 20px;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-header">
+        <div class="header-content">
+            <h1>트렌드쇼2026 : AI와의 경쟁</h1>
+            <span class="notice">본 내용은 AI 거버넌스 컨퍼런스 2026 강의를 듣고 AI로 재구성한 것입니다.</span>
+        </div>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab-wrapper">
+            <div class="tabs" id="tabs">
+                <button class="tab active" onclick="showTab(0)">
+                    <div class="tab-speaker">윤송이</div>
+                    <div class="tab-title">AI의 경쟁: 국가, 조직 그리고 개인</div>
+                </button>
+                <button class="tab" onclick="showTab(1)">
+                    <div class="tab-speaker">김대식</div>
+                    <div class="tab-title">AI 시대 살아남을 인간의 인간성</div>
+                </button>
+                <button class="tab" onclick="showTab(2)">
+                    <div class="tab-speaker">송길영</div>
+                    <div class="tab-title">시대블록 2026: 경량문명의 탄생</div>
+                </button>
+                <button class="tab" onclick="showTab(3)">
+                    <div class="tab-speaker">오건영</div>
+                    <div class="tab-title">2026년 거시경제 전망</div>
+                </button>
+                <button class="tab" onclick="showTab(4)">
+                    <div class="tab-speaker">손재권</div>
+                    <div class="tab-title">2026년 AI 임팩트 트렌드 7</div>
+                </button>
+                <button class="tab" onclick="showTab(5)">
+                    <div class="tab-speaker">김미경</div>
+                    <div class="tab-title">수명혁명의 시대</div>
+                </button>
+                <button class="tab" onclick="showTab(6)">
+                    <div class="tab-speaker">하형석</div>
+                    <div class="tab-title">K-뷰티의 글로벌 성공 방정식</div>
+                </button>
+                <button class="tab" onclick="showTab(7)">
+                    <div class="tab-speaker">이주환</div>
+                    <div class="tab-title">AI 에이전트는 어떻게 비즈니스를 바꾸는가</div>
+                </button>
+                <button class="tab" onclick="showTab(8)">
+                    <div class="tab-speaker">이나래</div>
+                    <div class="tab-title">AI 에이전트 시대, 도시와 삶</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <!-- 각 탭의 컨텐츠는 개별 HTML 파일에서 iframe으로 로드 -->
+        <div class="content-wrapper">
+            <iframe id="content-frame"></iframe>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        const pages = [
+            'page_윤송이.html',
+            'page_김대식.html',
+            'page_송길영.html',
+            'page_오건영.html',
+            'page_손재권.html',
+            'page_김미경.html',
+            'page_하형석.html',
+            'page_이주환.html',
+            'page_이나래.html'
+        ];
+
+        function showTab(index) {
+            // 탭 활성화
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // iframe에 페이지 로드
+            const iframe = document.getElementById('content-frame');
+            iframe.src = pages[index];
+
+            // 스크롤을 상단으로
+            const contentContainer = document.querySelector('.content-container');
+            contentContainer.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 선택된 탭을 보이도록 스크롤
+            scrollToTab(index);
+        }
+
+        function scrollTabs(direction) {
+            const tabsContainer = document.getElementById('tabs');
+            const scrollAmount = 900; // 클릭시 스크롤 이동 거리 (매우 빠르게)
+            tabsContainer.scrollLeft += direction * scrollAmount;
+
+            // 화살표 버튼 상태 업데이트
+            setTimeout(updateArrows, 100);
+        }
+
+        function scrollToTab(index) {
+            const tabsContainer = document.getElementById('tabs');
+            const tabs = document.querySelectorAll('.tab');
+            if (tabs[index]) {
+                const tab = tabs[index];
+                const tabLeft = tab.offsetLeft;
+                const containerWidth = tabsContainer.offsetWidth;
+                const tabWidth = tab.offsetWidth;
+
+                // 탭을 중앙에 오도록 스크롤
+                tabsContainer.scrollLeft = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+            }
+            updateArrows();
+        }
+
+        function updateArrows() {
+            const tabsContainer = document.getElementById('tabs');
+            const leftArrow = document.getElementById('leftArrow');
+            const rightArrow = document.getElementById('rightArrow');
+
+            // 왼쪽 끝인지 확인
+            if (tabsContainer.scrollLeft <= 0) {
+                leftArrow.disabled = true;
+            } else {
+                leftArrow.disabled = false;
+            }
+
+            // 오른쪽 끝인지 확인
+            if (tabsContainer.scrollLeft >= tabsContainer.scrollWidth - tabsContainer.offsetWidth - 5) {
+                rightArrow.disabled = true;
+            } else {
+                rightArrow.disabled = false;
+            }
+        }
+
+        // 자동 스크롤 관련 변수
+        let autoScrollInterval = null;
+
+        // 화살표에 마우스 hover시 자동 스크롤
+        function startAutoScroll(direction) {
+            stopAutoScroll(); // 기존 스크롤 정지
+            autoScrollInterval = setInterval(function() {
+                const tabsContainer = document.getElementById('tabs');
+                tabsContainer.scrollLeft += direction * 24; // hover시 매우 빠르게 스크롤 (3배)
+                updateArrows();
+            }, 20);
+        }
+
+        function stopAutoScroll() {
+            if (autoScrollInterval) {
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = null;
+            }
+        }
+
+        // 페이지 로드시 화살표 상태 초기화 및 첫 페이지 로드
+        let lastScrollTop = 0;
+
+        window.addEventListener('load', function() {
+            updateArrows();
+            showTab(0); // 첫 번째 탭 (윤송이) 로드
+
+            // 화살표에 이벤트 리스너 추가
+            const leftArrow = document.getElementById('leftArrow');
+            const rightArrow = document.getElementById('rightArrow');
+
+            leftArrow.addEventListener('mouseenter', function() {
+                if (!this.disabled) startAutoScroll(-1);
+            });
+            leftArrow.addEventListener('mouseleave', stopAutoScroll);
+
+            rightArrow.addEventListener('mouseenter', function() {
+                if (!this.disabled) startAutoScroll(1);
+            });
+            rightArrow.addEventListener('mouseleave', stopAutoScroll);
+
+            // Back to top 버튼
+            const contentContainer = document.querySelector('.content-container');
+            const backToTop = document.getElementById('backToTop');
+
+            contentContainer.addEventListener('scroll', function() {
+                const scrollTop = contentContainer.scrollTop;
+
+                // Back to top 버튼
+                if (scrollTop > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+        });
+        window.addEventListener('resize', updateArrows);
+
+        function scrollToTop() {
+            const contentContainer = document.querySelector('.content-container');
+            contentContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 초기 로드
+        window.addEventListener('DOMContentLoaded', () => {
+            showTab(0);
+        });
+    </script>
+</body>
+</html>
