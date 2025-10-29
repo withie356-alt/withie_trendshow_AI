@@ -22,10 +22,14 @@ export async function onRequest(context) {
       if (!env || !env.PASSWORD) {
         errorMessage = '서버 설정 오류: 환경변수가 설정되지 않았습니다.';
       } else if (password === env.PASSWORD) {
-        // 원래 요청한 페이지로 리다이렉트
-        const response = Response.redirect(url.origin + '/', 302);
-        response.headers.set('Set-Cookie', 'siteauth=ok; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800');
-        return response;
+        // 원래 요청한 페이지로 리다이렉트 - 쿠키 포함
+        return new Response(null, {
+          status: 302,
+          headers: {
+            'Location': url.origin + '/',
+            'Set-Cookie': 'siteauth=ok; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800'
+          }
+        });
       } else {
         errorMessage = '비밀번호가 올바르지 않습니다.';
       }
