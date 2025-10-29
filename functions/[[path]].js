@@ -12,18 +12,26 @@ export async function onRequest(context) {
   const hasAuth = cookies.includes('siteauth=ok');
 
   // POST 요청 - 암호 확인
+  let errorMessage = '';
   if (request.method === 'POST') {
     try {
       const formData = await request.formData();
       const password = formData.get('password');
 
-      if (password === env.PASSWORD) {
+      // 환경변수 확인
+      if (!env || !env.PASSWORD) {
+        errorMessage = '서버 설정 오류: 환경변수가 설정되지 않았습니다.';
+      } else if (password === env.PASSWORD) {
         // 원래 요청한 페이지로 리다이렉트
         const response = Response.redirect(url.origin + '/', 302);
         response.headers.set('Set-Cookie', 'siteauth=ok; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800');
         return response;
+      } else {
+        errorMessage = '비밀번호가 올바르지 않습니다.';
       }
-    } catch (e) {}
+    } catch (e) {
+      errorMessage = '오류가 발생했습니다: ' + e.message;
+    }
   }
 
   // 인증된 경우 원래 페이지 보여주기
@@ -114,6 +122,12 @@ export async function onRequest(context) {
             font-size: 48px;
             margin-bottom: 20px;
         }
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 15px;
+            display: ${errorMessage ? 'block' : 'none'};
+        }
     </style>
 </head>
 <body>
@@ -127,6 +141,7 @@ export async function onRequest(context) {
                 <input type="password" name="password" id="password" placeholder="비밀번호" required autofocus>
             </div>
             <button type="submit">입장하기</button>
+            ${errorMessage ? `<p class="error-message">${errorMessage}</p>` : ''}
         </form>
     </div>
 </body>
