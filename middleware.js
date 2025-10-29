@@ -1,37 +1,31 @@
-import { NextResponse } from 'next/server';
+export default function middleware(request) {
+  const url = new URL(request.url);
 
-export function middleware(request) {
-  // 쿠키에서 인증 상태 확인
-  const authCookie = request.cookies.get('auth');
-
-  // 이미 인증된 경우
-  if (authCookie?.value === 'authenticated') {
-    return NextResponse.next();
+  // 로그인 페이지는 통과
+  if (url.pathname === '/login.html') {
+    return new Response(null, { status: 200 });
   }
 
-  // 암호 확인 요청인 경우
+  // 쿠키 확인
+  const cookies = request.headers.get('cookie') || '';
+  const authCookie = cookies.split(';').find(c => c.trim().startsWith('auth='));
+
+  if (authCookie && authCookie.includes('authenticated')) {
+    return new Response(null, { status: 200 });
+  }
+
+  // 암호 헤더 확인
   const password = request.headers.get('x-password');
   if (password === '356356') {
-    const response = NextResponse.next();
-    response.cookies.set('auth', 'authenticated', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 24 * 7 // 7일
-    });
+    const response = new Response(null, { status: 200 });
+    response.headers.set('Set-Cookie', 'auth=authenticated; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=604800');
     return response;
   }
 
-  // 로그인 페이지로 리다이렉트
-  const url = request.nextUrl.clone();
-  if (url.pathname !== '/login.html') {
-    url.pathname = '/login.html';
-    return NextResponse.redirect(url);
-  }
-
-  return NextResponse.next();
+  // 인증되지 않은 경우 로그인 페이지로 리다이렉트
+  return Response.redirect(new URL('/login.html', request.url), 302);
 }
 
 export const config = {
-  matcher: ['/((?!login.html|_next|favicon.ico).*)']
+  matcher: ['/((?!login.html|_next|favicon.ico|.*\\.png|.*\\.jpg|.*\\.css|.*\\.js).*)']
 };
