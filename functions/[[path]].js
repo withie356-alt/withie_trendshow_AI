@@ -148,13 +148,13 @@ export async function onRequest(context) {
 <body>
     <div class="login-container">
         <div class="lock-icon">🔒</div>
+        <h1>트렌드쇼2026</h1>
+        <p class="subtitle">AI와의 경쟁</p>
         <div class="notice-box">
             본 콘텐츠는 2024년 10월 28일 개최된 '트렌드쇼2026 : AI와의 경쟁' 컨퍼런스 현장 메모를
             기반으로 AI가 재구성한 자료입니다. 메모 과정에서의 한계로 인해 일부 내용이 부정확하거나
             누락되었을 수 있습니다. 각 연사의 핵심 메시지와 전체 흐름을 이해하는 참고 자료로 활용해 주시기 바랍니다.
         </div>
-        <h1>트렌드쇼2026</h1>
-        <p class="subtitle">AI와의 경쟁</p>
         <form method="POST">
             <div class="input-group">
                 <label for="password">비밀번호를 입력하세요</label>
